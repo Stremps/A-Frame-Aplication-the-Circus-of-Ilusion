@@ -16,16 +16,19 @@
             <!-- Adding a sphere -->
             <a-sphere position="0 0 0" radius="1" color="#EF2D5E"></a-sphere>
 
+            <!-- Adding a cone -->
+            <a-cone position="-2 0 0" rotation="0 0 0" color="#FFC65D" ></a-cone>
+
             <!-- Adding a plane -->
             <a-plane position="0 -1 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
 
-            <!-- Adding a cone -->
-            <a-cone position="-2 0 0" rotation="0 0 0" color="#FFFF00" ></a-cone>
-            
             <!-- Creating light -->
             <a-light type="point" position="2 4 -3"></a-light>
+
+            <!-- Creating sky -->
+            <a-sky color="#ECECEC"></a-sky>
             
-            <!-- Creating a camera -->
+            <!-- Creating a camera and defining the position, in case of omition the came still be create in origin point-->
             <a-camera position="0 2 10"></a-camera>
         <a-scene>
     </body>
