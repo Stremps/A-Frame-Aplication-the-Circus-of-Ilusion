@@ -6,21 +6,27 @@
         <title>The Circus of Ilusion</title>
         <!-- Including the A-frame library -->
         <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+
+        <!-- Including the A-Frame Physics System Library. The version of the package may cause trouble-->
+        <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
     </head>
     <body>
         <!-- Setting the scene with A-frame-->
-        <a-scene>
+        <a-scene physics="gravity: -9.8" >
             <!-- Adding a cube (primitive entity) -->
-            <a-box position="2 0 0" rotation="0 45 0" color="#4CC3D9"></a-box>
+            <a-box position="2 0 0" rotation="0 45 0" color="#4CC3D9" ></a-box>
 
             <!-- Adding a sphere -->
-            <a-sphere position="0 0 0" radius="1" color="#EF2D5E"></a-sphere>
+            <!-- <a-sphere position="0 0 0" radius="1" color="#EF2D5E"></a-sphere> -->
+
+            <!-- Adding a sphere with physics, adding the component 'dynamic-body' -->
+            <a-sphere dynamic-body="mass: 2" position="0 1 0" radius="1" color="#EF2D5E"></a-sphere>
 
             <!-- Adding a cone -->
-            <a-cone position="-2 0 0" rotation="0 0 0" color="#FFC65D" ></a-cone>
+            <a-cone dynamic-body position="-2 1 0" rotation="0 0 0" color="#FFC65D" ></a-cone>
 
-            <!-- Adding a plane -->
-            <a-plane position="0 -1 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+            <!-- Adding a plane, as a ground without physics adding the component 'static-body'-->
+            <a-plane static-body position="0 -1 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
 
             <!-- Creating light -->
             <a-light type="point" position="2 4 -3"></a-light>
