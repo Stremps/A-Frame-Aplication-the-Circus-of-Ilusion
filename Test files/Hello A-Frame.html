@@ -4,11 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hello A-Frame</title>
-        <!-- Including the A-frame library -->
-        <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+        <!-- Including the A-frame library, previous version for compatibility with text geometry -->
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 
         <!-- Including the A-Frame Physics System Library. The version of the package may cause trouble-->
         <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
+
+        <!-- To add geometry to text -->
+        <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
     </head>
     <body>
         <!-- Setting the scene with A-frame-->
@@ -22,6 +25,16 @@
             <!-- Adding a sphere with physics, adding the component 'dynamic-body' -->
             <a-sphere dynamic-body="mass: 2" position="0 1 0" radius="1" color="#EF2D5E"></a-sphere>
 
+            <!-- 3D text, not primitive in A-frame -->
+            <a-entity 
+                text-geometry="value: Hello, A-frame!; font: https://cdn.jsdelivr.net/npm/three@0.128.0/examples/fonts/helvetiker_regular.typeface.json;"
+                material="color: #080808"
+                position="-2.2 3 0">
+            </a-entity>
+
+            <!-- 2D text, primitive in A-frame -->
+            <a-text value="Hello, A-frame in 2D text!" align="center" width="10" position="0 2.5 0"></a-text>
+
             <!-- Adding a cone -->
             <a-cone dynamic-body position="-2 1 0" rotation="0 0 0" color="#FFC65D" ></a-cone>
 
@@ -32,7 +45,7 @@
             <a-light type="point" position="2 4 -3"></a-light>
 
             <!-- Creating sky -->
-            <a-sky color="#ECECEC"></a-sky>
+            <a-sky color="#808080"></a-sky>
             
             <!-- Creating a camera and defining the position, in case of omition the came still be create in origin point-->
             <a-camera position="0 2 10"></a-camera>
