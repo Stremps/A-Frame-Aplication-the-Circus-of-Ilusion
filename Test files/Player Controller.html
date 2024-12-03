@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Player Controler</title>
+        <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    </head>
+    <body>
+        <a-scene>
+            <!-- Ground to move -->
+            <a-plane 
+                position="0 0 0"
+                rotation="-90 0 0"
+                width="10"
+                height="10"
+                color="grey">
+            </a-plane>
+
+            <!-- Background sky-->
+            <a-sky color="#ADE4FF"></a-sky>
+
+            <!-- Camera/Player -->
+            <!-- Defines height of the player, velocity and lock the mouse in the screen-->
+            <a-camera position="0 1.6 0" 
+                wasd-controls="acceleration: 25" 
+                look-controls="pointerLockEnabled: true">
+
+                <!-- Creates a crosshair in the center of the screen -->
+                <a-cursor></a-cursor> 
+            </a-camera>
+            
+        </a-scene>
+    </body>
+</html>
