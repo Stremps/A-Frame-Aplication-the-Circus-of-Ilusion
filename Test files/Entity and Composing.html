@@ -7,11 +7,123 @@
         <!-- Including the A-frame library -->
         <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
 
+
+        <script>
+            AFRAME.registerComponent('car', { // Method of creating new components / 'car' == Component name
+                schema: { // Defines the attributes that the component accepts
+                    structureColor: {type: 'string', default: 'grey'}, // Define type (string, boolean, number, etc.) and default value, if omitted
+                    windowsColor: {type: 'string', default: 'blue'},
+                    frontLightColor: {type: 'string', default: 'yellow'}
+                },
+                init: function (){ // 'init' is the method called when initializing the object, in this case, its construction
+                    // Upper Body
+                    const upperBody = document.createElement('a-box'); // Create new element
+                    upperBody.setAttribute('position', '0 1.5 0.5'); // Element attribute configuration
+                    upperBody.setAttribute('width', '3');
+                    upperBody.setAttribute('height', '1.5');
+                    upperBody.setAttribute('depth', '2');
+                    upperBody.setAttribute('color', this.data.structureColor);
+                    this.el.appendChild(upperBody); // Defines the new element by configuring it as a child of the entity
+                    // 'this.el' ==  Refers to the parent entity where the component was added
+
+                    // Side Windows
+                    const sideWindows = document.createElement('a-box');
+                    sideWindows.setAttribute('position', '0 1.5 0.5');
+                    sideWindows.setAttribute('width', '3.1');
+                    sideWindows.setAttribute('height', '1');
+                    sideWindows.setAttribute('depth', '1.25');
+                    sideWindows.setAttribute('color', this.data.windowsColor);
+                    this.el.appendChild(sideWindows);
+
+                    // Front/Back Window
+                    const mainWindows = document.createElement('a-box');
+                    mainWindows.setAttribute('position', '0 1.5 0.5');
+                    mainWindows.setAttribute('width', '2.5');
+                    mainWindows.setAttribute('height', '1');
+                    mainWindows.setAttribute('depth', '2.1');
+                    mainWindows.setAttribute('color', this.data.windowsColor);
+                    this.el.appendChild(mainWindows);
+
+                    // Main  Body
+                    const mainBody = document.createElement('a-box');
+                    mainBody.setAttribute('position', '0 0 0');
+                    mainBody.setAttribute('width', '3');
+                    mainBody.setAttribute('height', '1.5');
+                    mainBody.setAttribute('depth', '5');
+                    mainBody.setAttribute('color', this.data.structureColor);
+                    this.el.appendChild(mainBody);
+
+                    // Wheels
+                    const frontLeft = document.createElement('a-cylinder')
+                    frontLeft.setAttribute('position', '1.5 -1 1.5');
+                    frontLeft.setAttribute('rotation', '0 0 90');
+                    frontLeft.setAttribute('height', '0.5');
+                    frontLeft.setAttribute('radius', '0.75');
+                    frontLeft.setAttribute('color', 'black');
+                    const frontRight = document.createElement('a-cylinder')
+                    frontRight.setAttribute('position', '-1.5 -1 1.5');
+                    frontRight.setAttribute('rotation', '0 0 90');
+                    frontRight.setAttribute('height', '0.5');
+                    frontRight.setAttribute('radius', '0.75');
+                    frontRight.setAttribute('color', 'black');
+                    const backLeft = document.createElement('a-cylinder')
+                    backLeft.setAttribute('position', '1.5 -1 -1.5');
+                    backLeft.setAttribute('rotation', '0 0 90');
+                    backLeft.setAttribute('height', '0.5');
+                    backLeft.setAttribute('radius', '0.75');
+                    backLeft.setAttribute('color', 'black');
+                    const backRight = document.createElement('a-cylinder')
+                    backRight.setAttribute('position', '-1.5 -1 -1.5');
+                    backRight.setAttribute('rotation', '0 0 90');
+                    backRight.setAttribute('height', '0.5');
+                    backRight.setAttribute('radius', '0.75');
+                    backRight.setAttribute('color', 'black');
+                    this.el.appendChild(frontLeft);
+                    this.el.appendChild(frontRight);
+                    this.el.appendChild(backLeft);
+                    this.el.appendChild(backRight);
+
+                    // Front Lights
+                    const leftFrontLight = document.createElement('a-box');
+                    leftFrontLight.setAttribute('position', '1.1 0 2.35');
+                    leftFrontLight.setAttribute('width', '1');
+                    leftFrontLight.setAttribute('height', '0.5');
+                    leftFrontLight.setAttribute('depth', '0.5');
+                    leftFrontLight.setAttribute('color', this.data.frontLightColor);
+                    this.el.appendChild(leftFrontLight);
+                    const rightrontLight = document.createElement('a-box');
+                    rightrontLight.setAttribute('position', '-1.1 0 2.35');
+                    rightrontLight.setAttribute('width', '1');
+                    rightrontLight.setAttribute('height', '0.5');
+                    rightrontLight.setAttribute('depth', '0.5');
+                    rightrontLight.setAttribute('color', this.data.frontLightColor);
+                    this.el.appendChild(rightrontLight);
+
+                    // Back Lights
+                    const leftFBackLight = document.createElement('a-box');
+                    leftFBackLight.setAttribute('position', '1.1 -0.25 -2.35');
+                    leftFBackLight.setAttribute('width', '1');
+                    leftFBackLight.setAttribute('height', '0.3');
+                    leftFBackLight.setAttribute('depth', '0.5');
+                    leftFBackLight.setAttribute('color', 'red');
+                    this.el.appendChild(leftFBackLight);
+                    const rightFBackLight = document.createElement('a-box');
+                    rightFBackLight.setAttribute('position', '-1.1 -0.25 -2.35');
+                    rightFBackLight.setAttribute('width', '1');
+                    rightFBackLight.setAttribute('height', '0.3');
+                    rightFBackLight.setAttribute('depth', '0.5');
+                    rightFBackLight.setAttribute('color', 'red');
+                    this.el.appendChild(rightFBackLight);
+                }
+            });
+        </script>
     </head>
     <body>
         <a-scene>
 
-            <a-entity id="car" position="0 0 0" rotation="0 0 0">
+            <!-- One Entity called car -->
+            <!-- With all structure in this entity, you can: Move, rotate, animate, create physics, etc -->
+            <a-entity id="car" position="-4 0 0" rotation="0 0 0">
                 <!-- Upper Body -->
                 <a-box position="0 1.5 0.5" rotation="0 0 0" width="3" height="1.5" depth="2" color="green"></a-box>
 
@@ -39,6 +151,11 @@
                 <a-box position="-1.1 -0.25 -2.35" rotation="0 0 0" width="1" height="0.3" depth="0.5" color="red"></a-box>
             
             </a-entity>
+
+
+            <!-- Composing Entity-->
+            <a-entity car="structureColor: yellow; frontLightColor: white" position="4 0 0"></a-entity>
+            <a-entity car="structureColor: red; frontLightColor: blue; windowsColor: grey" position="0 0 0"></a-entity>
 
             <!-- Adding a plane, as a ground -->
             <a-plane position="0 -2 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
