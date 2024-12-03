@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hello A-Frame</title>
+        <!-- Including the A-frame library -->
+        <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
+
+    </head>
+    <body>
+        <a-scene>
+
+            <a-entity id="car" position="0 0 0" rotation="0 0 0">
+                <!-- Upper Body -->
+                <a-box position="0 1.5 0.5" rotation="0 0 0" width="3" height="1.5" depth="2" color="green"></a-box>
+
+                <!-- Side Windows -->
+                <a-box position="0 1.5 0.5" rotation="0 0 0" width="3.1" height="1" depth="1.25" color="blue"></a-box>
+
+                <!-- Front/Back Window -->
+                <a-box position="0 1.5 0.5" rotation="0 0 0" width="2.5" height="1" depth="2.1" color="blue"></a-box>
+
+                <!-- Main Body -->
+                <a-box position="0 0 0" rotation="0 0 0" width="3" height="1.5" depth="5" color="green"></a-box>
+
+                <!-- Wheels -->
+                <a-cylinder position="1.5 -1 1.5" rotation="0 0 90" height="0.5" radius="0.75" color="black"></a-cylinder> <!-- Front/left -->
+                <a-cylinder position="-1.5 -1 1.5" rotation="0 0 90" height="0.5" radius="0.75" color="black"></a-cylinder> <!-- Front/Right -->
+                <a-cylinder position="1.5 -1 -1.5" rotation="0 0 90" height="0.5" radius="0.75" color="black"></a-cylinder> <!-- Back/left -->
+                <a-cylinder position="-1.5 -1 -1.5" rotation="0 0 90" height="0.5" radius="0.75" color="black"></a-cylinder> <!-- Back/Right -->
+                
+                <!-- Front Lights -->
+                <a-box position="1.1 0 2.35" rotation="0 0 0" width="1" height="0.5" depth="0.5" color="yellow"></a-box>
+                <a-box position="-1.1 0 2.35" rotation="0 0 0" width="1" height="0.5" depth="0.5" color="yellow"></a-box>
+            
+                <!-- Back Lights -->
+                <a-box position="1.1 -0.25 -2.35" rotation="0 0 0" width="1" height="0.3" depth="0.5" color="red"></a-box>
+                <a-box position="-1.1 -0.25 -2.35" rotation="0 0 0" width="1" height="0.3" depth="0.5" color="red"></a-box>
+            
+            </a-entity>
+
+            <!-- Adding a plane, as a ground -->
+            <a-plane position="0 -2 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+
+            <!-- Creating light -->
+            <a-light type="point" position="2 4 -3"></a-light>
+
+            <!-- Creating sky -->
+            <a-sky color="#808080"></a-sky>
+            
+            <!-- Creating a camera and defining the position, in case of omition the came still be create in origin point-->
+            <a-camera position="0 2 10"></a-camera>
+        <a-scene>
+    </body>
+</html>
