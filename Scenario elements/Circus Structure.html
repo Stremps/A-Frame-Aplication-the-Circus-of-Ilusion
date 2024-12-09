@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Circus Structure Elements</title>
+        
+        <!-- Including the A-frame library, previous version for compatibility with text geometry -->
+        <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+        <script src="../js/A-Frame_CSG.js"></script> <!-- For while this code is not going to be publicated... -->
+
+    </head>
+    <body>
+        <a-scene>
+            <a-sky color="#ADE4FF"></a-sky>
+
+            <!-- Default lighting injected by A-Frame. -->
+            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.3" position="-0.5 1 1"></a-entity>
+
+            <!-- Top of the circus -->
+            <a-cone></a-cone>
+            <!-- Camera -->
+            <a-camera position="0 2 3" wasd-controls="fly: true"></a-camera>
+
+            
+        </a-scene>
+    </body>
+</html>
