@@ -8,6 +8,34 @@
         <!-- Including the A-frame library, previous version for compatibility with text geometry -->
         <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
         <script src="../js/A-Frame_CSG.js"></script> <!-- For while this code is not going to be publicated... -->
+        <script>
+            AFRAME.registerComponent('clone-mesh', {
+                schema: {
+                    target: {type: 'selector'} // ID do elemento a ser clonado
+                },
+                init: function () {
+                    const targetEl = this.data.target;
+                    if (!targetEl || !targetEl.object3D) {
+                        console.error('Mesh alvo não encontrada para clonar.');
+                        return;
+                    }
+
+                    // Clonar a mesh (object3D)
+                    const clonedMesh = targetEl.object3D.clone(true);
+
+                    // Criar nova entidade para a cópia
+                    const clonedEl = document.createElement('a-entity');
+                    clonedEl.object3D = clonedMesh; // Atribuir a mesh clonada à nova entidade
+
+                    // Gerar um novo ID único (opcional)
+                    clonedEl.setAttribute('id', `clone-${Date.now()}`);
+
+                    // Adicionar a cópia na cena
+                    this.el.sceneEl.appendChild(clonedEl);
+                }
+            });
+        </script>
+        
 
     </head>
     <body>
@@ -19,9 +47,128 @@
             <a-entity light="type: directional; color: #FFF; intensity: 0.3" position="-0.5 1 1"></a-entity>
 
             <!-- Top of the circus -->
-            <a-cone></a-cone>
+            <a-entity id="Top Collection" position="0 0 0" rotation="0 0 0" scale="1 1 1">
+                <a-entity id="First top Stage" position="-8 0 0" rotation="0 0 0" scale="1 1 1">
+                    <a-text value="First Stage" align="center" position="0 1 0" color="black"></a-text>
+                    <a-sphere id="sphere1"
+                        position="0 0.2 0" 
+                        rotation="0 0 0" 
+                        scale="0.5 0.5 1"
+                        material="opacity: 0.3; color: blue">
+                    </a-sphere>
+
+                    <a-cone id="Top1"
+                        position="0 0 0" 
+                        rotation="0 0 0" 
+                        scale="1.5 1 1.5"
+                        color="red"
+                        csg-meshs="subtract: #sphere1">
+                    </a-cone>
+                </a-entity>
+
+                <a-entity id="Second top stage" position="-4 0 0" rotation="0 0 0" scale="1 1 1">
+                    <a-text value="Second Stage" align="center" position="0 1 0" color="black"></a-text>
+                    <!-- Will be hide for the demonstration-->
+                    <a-entity visible="false">
+                        <a-sphere id="sphere1"
+                            position="0 0.2 0" 
+                            rotation="0 0 0" 
+                            scale="0.5 0.5 1"
+                            material="color: blue">
+                        </a-sphere>
+                    </a-entity>
+
+                    <a-sphere id="sphere2"
+                        position="1 0 0" 
+                        rotation="0 0 45" 
+                        scale="0.3 0.6 1"
+                        material="opacity: 0.5; color: blue">
+                    </a-sphere>
+
+                    <a-sphere id="sphere3"
+                        position="-1 0 0" 
+                        rotation="0 0 -45" 
+                        scale="0.3 0.6 1"
+                        material="opacity: 0.5; color: blue">
+                    </a-sphere>
+
+                    <a-cone id="Top2"
+                        position="0 0 0" 
+                        rotation="0 0 0" 
+                        scale="1.5 1 1.5"
+                        color="red"
+                        csg-meshs="subtract: #sphere1, #sphere2, #sphere3">
+                    </a-cone>
+                </a-entity>
+
+                <a-entity id="Third top stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
+                    <a-text value="Third Stage" align="center" position="0 1 0" color="black"></a-text>
+                    <!-- Will be hide for the demonstration-->
+                    <a-entity visible="false">
+                        <a-sphere id="sphere1"
+                            position="0 0.2 0" 
+                            rotation="0 0 0" 
+                            scale="0.5 0.5 1"
+                            material="color: blue">
+                        </a-sphere>
+                        
+                        <a-sphere id="sphere2"
+                            position="1 0 0" 
+                            rotation="0 0 45" 
+                            scale="0.3 0.6 1"
+                            material="opacity: 0.5; color: blue">
+                        </a-sphere>
+
+                        <a-sphere id="sphere3"
+                            position="-1 0 0" 
+                            rotation="0 0 -45" 
+                            scale="0.3 0.6 1"
+                            material="opacity: 0.5; color: blue">
+                        </a-sphere>
+                    </a-entity>
+
+                    <a-sphere id="sphere4"
+                        position="0.5 0.4 0" 
+                        rotation="0 0 0" 
+                        scale="0.5 0.5 1"
+                        material="opacity: 0.3; color: yellow">
+                    </a-sphere>
+
+                    <a-sphere id="sphere5"
+                        position="-0.5 0.4 0" 
+                        rotation="0 0 0" 
+                        scale="0.5 0.5 1"
+                        material="opacity: 0.3; color: yellow">
+                    </a-sphere>
+
+                    <a-cone id="Top3"
+                        position="0 0 0" 
+                        rotation="0 0 0" 
+                        scale="1.5 1 1.5"
+                        color="red"
+                        csg-meshs="subtract: #sphere1, #sphere2, #sphere3, #sphere4, #sphere5">
+                    </a-cone>
+
+                    <a-cone id="Top4"
+                        position="0 0 0" 
+                        rotation="0 0 0" 
+                        scale="1.5 1 1.5"
+                        color="purple"
+                        csg-meshs="subtract: #sphere1, #sphere2, #sphere3; intersect: #sphere4">
+                    </a-cone>
+
+                    <a-cone id="Top5"
+                        position="0 0 0" 
+                        rotation="0 0 0" 
+                        scale="1.5 1 1.5"
+                        color="purple"
+                        csg-meshs="subtract: #sphere1, #sphere2, #sphere3; intersect: #sphere5">
+                    </a-cone>
+                </a-entity>
+            </a-entity>
+
             <!-- Camera -->
-            <a-camera position="0 2 3" wasd-controls="fly: true"></a-camera>
+            <a-camera position="0 0 3" wasd-controls="fly: true"></a-camera>
 
             
         </a-scene>
