@@ -82,8 +82,9 @@
             <a-entity light="type: directional; color: #FFF; intensity: 0.3" position="-0.5 1 1"></a-entity>
 
             <!-- Top of the circus -->
-            <a-entity id="Top Collection" position="4 0 0" rotation="0 0 0" scale="1 1 1">
-                <a-entity id="First top Stage" position="-8 0 0" rotation="0 0 0" scale="1 1 1">
+            
+            <a-entity id="Top Collection" position="0 5 0" rotation="0 0 0" scale="1 1 1">
+                <a-entity id="First top Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
                     <a-text value="First Stage" align="center" position="0 1 0" color="black"></a-text>
                     <a-sphere id="sphere1"
                         position="0 0.2 0" 
@@ -108,7 +109,7 @@
                     </a-entity>
                 </a-entity>
 
-                <a-entity id="Second top stage" position="-4 0 0" rotation="0 0 0" scale="1 1 1">
+                <a-entity id="Second top stage" position="4 0 0" rotation="0 0 0" scale="1 1 1">
                     <a-text value="Second Stage" align="center" position="0 1 0" color="black"></a-text>
                     <a-sphere id="sphere2"
                         position="1 0 0" 
@@ -140,7 +141,7 @@
                     </a-entity>
                 </a-entity>
 
-                <a-entity id="Third top stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
+                <a-entity id="Third top stage" position="8 0 0" rotation="0 0 0" scale="1 1 1">
                     <a-text value="Third Stage" align="center" position="0 1 0" color="black"></a-text>
 
                     <a-sphere id="sphere4"
@@ -190,9 +191,64 @@
                     </a-entity>
                 </a-entity>
             </a-entity>
+            
+            <a-entity id="Base Collection" position="0 0 0" rotation="0 0 0" scale="1 1 1">
+                <a-entity id="First base Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
+                    <a-text value="First Stage" align="center" position="0 1 0" color="black"></a-text>
+                    <a-box id="cube1"
+                        position="0 -0.2 1.35"
+                        rotation="0 0 0"
+                        scale="0.7 0.6 0.75"
+                        material="opacity: 0.4; color: blue">
+                    </a-box>
+
+                    <a-cylinder id="Base1"
+                        position="0 0 0"
+                        rotation="0 0 0"
+                        scale="1.5 1 1.5"
+                        color="red"
+                        csg-meshs="subtract: #cube1">
+                    </a-cylinder>
+
+                    <a-entity id="Base1Freezed"
+                    position="0 -2 0" 
+                    rotation="0 0 0" 
+                    scale="1.5 1 1.5"
+                    freeze-csg-result="source: #Base1; delay: 200; color: red">
+                    </a-entity>
+                </a-entity>
+
+                <a-entity id="Second base Stage" position="4 0 0" rotation="0 0 0" scale="1 1 1">
+                    <a-text value="Second Stage" align="center" position="0 1 0" color="black"></a-text>
+
+                    <a-cylinder id="cylinder1"
+                        position="0 0 0"
+                        rotation="0 0 0"
+                        scale="1.45 1.1 1.45"
+                        material="opacity: 0.4; color: blue">
+                    </a-cylinder>
+
+                    <a-entity id="Base2"
+                    position="0 0 0" 
+                    rotation="0 0 0" 
+                    scale="1.5 1 1.5"
+                    freeze-csg-result="source: #Base1; delay: 200; color: red"
+                    csg-meshs="subtract: #cylinder1">
+                    </a-entity>
+
+                    <a-entity id="Base2Freezed"
+                    position="0 -2 0"
+                    rotation="0 0 0"
+                    scale="1.5 1 1.5"
+                    freeze-csg-result="source: #Base2; delay: 200; color: red">
+
+                    </a-entity>
+                </a-entity>
+
+            </a-entity>
 
             <!-- Camera -->
-            <a-camera position="0 0 3" wasd-controls="fly: true"></a-camera>
+            <a-camera position="4 -5 3" wasd-controls="fly: true"></a-camera>
 
             
         </a-scene>
