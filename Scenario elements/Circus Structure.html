@@ -82,7 +82,6 @@
             <a-entity light="type: directional; color: #FFF; intensity: 0.3" position="-0.5 1 1"></a-entity>
 
             <!-- Top of the circus -->
-            
             <a-entity id="Top Collection" position="0 5 0" rotation="0 0 0" scale="1 1 1">
                 <a-entity id="First top Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
                     <a-text value="First Stage" align="center" position="0 1 0" color="black"></a-text>
@@ -105,7 +104,7 @@
                         position="0 -2 0" 
                         rotation="0 0 0" 
                         scale="1.5 1 1.5"
-                        freeze-csg-result="source: #Top1; delay: 200; color: red">
+                        freeze-csg-result="source: #Top1; delay: 300; color: red">
                     </a-entity>
                 </a-entity>
 
@@ -192,6 +191,7 @@
                 </a-entity>
             </a-entity>
             
+            <!-- Base of the circus -->
             <a-entity id="Base Collection" position="0 0 0" rotation="0 0 0" scale="1 1 1">
                 <a-entity id="First base Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
                     <a-text value="First Stage" align="center" position="0 1 0" color="black"></a-text>
@@ -244,11 +244,82 @@
 
                     </a-entity>
                 </a-entity>
+            </a-entity>
+            
+            <!-- Ground of the circus -->
+            <a-entity id="Ground Collection" position="0 -5 0" rotation="0 0 0" scale="1 1 1">
+                <a-entity id="First Ground Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
+                    <a-text value="First Stage" align="center" position="0 1 0" color="black"></a-text>
 
+                    <a-cylinder id="cylinder1"
+                    position="0 0.5 0"
+                    rotation="0 0 0"
+                    scale="1 1 1"
+                    material="opacity: 0.4; color: blue">
+                    </a-cylinder>
+
+                    <a-sphere id="Ground1"
+                        position="0 0 0"
+                        rotation="0 0 0"
+                        scale="1 1 1"
+                        color="red"
+                        csg-meshs="subtract: #cylinder1">
+                    </a-sphere>
+
+                    <a-entity id="Ground1Freezed"
+                    position="0 -2 0" 
+                    rotation="0 0 0" 
+                    scale="1 1 1"
+                    freeze-csg-result="source: #Ground1; delay: 200; color: red">
+                    </a-entity>
+                </a-entity>
+
+                <a-entity id="Second Ground Stage" position="4 0 0" rotation="0 0 0" scale="1 1 1">
+                    <a-text value="Second Stage" align="center" position="0 1 0" color="black"></a-text>
+
+                    <a-cylinder id="cylinder2"
+                    position="0 -0.05 0"
+                    rotation="0 0 0"
+                    scale="1.1 0.15 1.1"
+                    material="opacity: 0.4; color: yellow">
+                    </a-cylinder>
+
+                    <a-entity id="Ground2Up"
+                    position="0 0 0" 
+                    rotation="0 0 0" 
+                    scale="1 1 1"
+                    freeze-csg-result="source: #Ground1; delay: 200; color: purple"
+                    csg-meshs="intersect: #cylinder2">
+                    </a-entity>
+
+                    <a-entity id="Ground2Down"
+                    position="0 0 0" 
+                    rotation="0 0 0" 
+                    scale="1 1 1"
+                    freeze-csg-result="source: #Ground1; delay: 200; color: red"
+                    csg-meshs="subtract: #cylinder2">
+                    </a-entity>
+
+                    <a-entity id="Ground2Freezed" position="0 -2 0" rotation="0 0 0" scale="1 1 1">
+                        <a-entity id="Ground2UpFreezed"
+                        position="0 0 0"
+                        rotation="1 1 1"
+                        scale="1 1 1"
+                        freeze-csg-result="source: #Ground2Up; delay: 200; color: purple">
+                        </a-entity>
+
+                        <a-entity id="Ground2DownFreezed"
+                        position="0 0 0"
+                        rotation="1 1 1"
+                        scale="1 1 1"
+                        freeze-csg-result="source: #Ground2Down; delay: 200; color: red">
+                        </a-entity>
+                    </a-entity>
+                </a-entity>
             </a-entity>
 
             <!-- Camera -->
-            <a-camera position="4 -5 3" wasd-controls="fly: true"></a-camera>
+            <a-camera position="4 0 3" wasd-controls="fly: true"></a-camera>
 
             
         </a-scene>
