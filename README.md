@@ -7,3 +7,5 @@ For this assignment, a circus (main scene) will be created, showcasing three dif
 ## Files Directory
 
 - Test Files: Files of study and pratice of A-frame
+- Scenario elements: Files of the main scene
+- js: JavaScript code (CSG)

@@ -6,7 +6,3 @@
 .DS_Store
 Thumbs.db
 
-
-# Unreleased codes
-js/A-Frame_CSG.js
-Test files/Using CSG in A-Frame.html
