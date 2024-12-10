@@ -7,7 +7,7 @@
         
         <!-- Including the A-frame library, previous version for compatibility with text geometry -->
         <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-        <script src="../js/A-Frame_CSG.js"></script> <!-- For while this code is not going to be publicated... -->
+        <script src="../js/A-Frame_CSG.js"></script>
         
         <script>
             AFRAME.registerComponent('freeze-csg-result', {
@@ -190,6 +190,55 @@
                     </a-entity>
                 </a-entity>
             </a-entity>
+
+            <a-entity id="Flag Collection" position="12 5 0" rotation="0 0 0" scale="1 1 1">
+                <a-entity id="First Flag Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
+                    <a-text value="First Stage" align="center" position="0 1 0" color="black"></a-text>
+
+                    <a-cone id="triangle"
+                        position="0.2 0 0" 
+                        rotation="0 0 90" 
+                        scale="0.6 1.5 0.1"
+                        material="opacity: 0.4; color: blue">
+                    </a-cone>
+
+                    <a-box id="Flag1"
+                        position="0 0 0"
+                        rotation="0 0 0"
+                        scale="1.7 0.8 0.05"
+                        color="red"
+                        csg-meshs="subtract: #triangle">
+                    </a-box>
+
+
+                    <a-entity id="Flag1Freezed"
+                        position="0 -2 0" 
+                        rotation="0 0 0" 
+                        scale="1.7 0.8 0.05"
+                        freeze-csg-result="source: #Flag1; delay: 400; color: red">
+                    </a-entity>
+                </a-entity>
+
+                <a-entity id="First Door Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
+                    <a-text value="Second Stage" align="center" position="4 1 0" color="black"></a-text>
+
+                    <a-box id="cube1"
+                        position="3.1 -0.5 0"
+                        rotation="0 0 0"
+                        scale="0.1 1.8 0.1"
+                        material="opacity: 1; color: purple">
+                    </a-box>
+
+                    <a-entity id="Flag2"
+                        position="4 0 0" 
+                        rotation="0 0 0" 
+                        scale="1.7 0.8 0.05"
+                        freeze-csg-result="source: #Flag1; delay: 400">
+                    </a-entity>
+                </a-entity>
+            </a-entity>
+
+            </a-entity>
             
             <!-- Base of the circus -->
             <a-entity id="Base Collection" position="0 0 0" rotation="0 0 0" scale="1 1 1">
@@ -246,6 +295,7 @@
                 </a-entity>
             </a-entity>
 
+            <!-- Door of the circus -->
             <a-entity id="Door Collection" position="12 0 0" rotation="0 0 0" scale="1 1 1">
                 <a-entity id="First Door Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
                     <a-text value="First Stage" align="center" position="0 1 0" color="black"></a-text>
