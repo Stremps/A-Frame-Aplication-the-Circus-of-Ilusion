@@ -8,6 +8,7 @@
         <!-- Including the A-frame library, previous version for compatibility with text geometry -->
         <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
         <script src="../js/A-Frame_CSG.js"></script>
+        <script src="../js/ScenarioScript.js"></script>
         
         <script>
             AFRAME.registerComponent('freeze-csg-result', {
@@ -316,20 +317,19 @@
                 <a-entity id="First Door Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
                     <a-text value="First Stage" align="center" position="0 1 0" color="black"></a-text>
 
-                    <a-entity id="Top1Copy"
-                        position="0 0.5 -0.2" 
-                        rotation="0 0 0" 
-                        scale="1.3 1 1"
-                        freeze-csg-result="source: #Top2; delay: 0; color: blue; opacity: 0.4"
-                        opacity="0.4">
-                    </a-entity>
+                    <a-box id="cube1"
+                        position="0 -0.5 0"
+                        rotation="0 0 0"
+                        scale="2.55 1 0.1"
+                        material="opacity: 0.4; color: blue">
+                    </a-box>
 
                     <a-box id="Door1"
                         position="0 0 0"
                         rotation="0 0 0"
                         scale="3 1.5 0.05"
                         color="red"
-                        csg-meshs="subtract: #Top1Copy">
+                        csg-meshs="subtract: #cube1">
                     </a-box>
 
 
@@ -344,22 +344,23 @@
                 <a-entity id="First Door Stage" position="0 0 0" rotation="0 0 0" scale="1 1 1">
                     <a-text value="Second Stage" align="center" position="4 1 0" color="black"></a-text>
 
-                    <a-box id="cube1"
-                        position="4 -0.5 0"
-                        rotation="0 0 0"
-                        scale="2.55 1 0.1"
-                        material="opacity: 0.4; color: blue">
-                    </a-box>
+                    <a-entity id="Top1Copy"
+                        position="4 0.5 -0.2" 
+                        rotation="0 0 0" 
+                        scale="1.3 1 1"
+                        freeze-csg-result="source: #Top2; delay: 1000; color: blue; opacity: 0.4"
+                        opacity="0.4">
+                    </a-entity>
 
                     <a-entity id="Door2"
                         position="4 0 0" 
                         rotation="0 0 0" 
                         scale="3 1.5 0.05"
                         freeze-csg-result="source: #Door1; delay: 5000; color: red"
-                        csg-meshs="subtract: #cube1">
+                        csg-meshs="subtract: #Top1Copy">
                     </a-entity>
 
-                    <a-entity id="door2Freezed"
+                    <a-entity id="door2Freezed" 
                         position="4 -2 0" 
                         rotation="0 0 0" 
                         scale="3 1.5 0.05"
@@ -441,7 +442,7 @@
                 </a-entity>
             </a-entity>
 
-            <!-- Door of the circus -->
+            <!-- Boolean Operations -->
             <a-entity id="Boolean Operations" position="12 -5 0" rotation="0 0 0" scale="1 1 1">
                 <a-entity id="Subtract" position="0 0 0" rotation="0 0 0" scale="1 1 1">
                     <a-text value="Subtract Operation" align="center" position="0 -1 0" color="black"></a-text>
