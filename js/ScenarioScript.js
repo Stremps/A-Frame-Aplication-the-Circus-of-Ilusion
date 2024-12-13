@@ -4,6 +4,7 @@ AFRAME.registerComponent('top', {
     schema: { 
         color1: {type: 'string', default: 'red'}, 
         color2: {type: 'string', default: 'purple'},
+        color3: {type: 'string', default: 'purple'},
         stage: {type: 'number', default: 3},
         showOperations: {type: 'boolean', default: false}
     },
@@ -74,16 +75,6 @@ AFRAME.registerComponent('top', {
         sphere5.setAttribute('material', 'opacity: 0.4; color: yellow');
         sphere5.setAttribute('visible', this.data.showOperations);
 
-        const leftTop = document.createElement('a-sphere');
-        leftTop.setAttribute('id', 'leftTop');
-        leftTop.setAttribute('position', '0.5 0.4 0');
-        leftTop.setAttribute('rotation', '0 0 0');
-        leftTop.setAttribute('scale', '0.5 0.5 1');
-        leftTop.setAttribute('material', 'opacity: 0.4; color: yellow');
-        leftTop.setAttribute('visible', this.data.showOperations);
-        leftTop.setAttribute('csg-meshs', 'subtract: #sphere1, #sphere3; intersect: #Top');
-        this.el.appendChild(leftTop);
-
         const sphere7 = document.createElement('a-sphere');
         sphere7.setAttribute('id', 'sphere7');
         sphere7.setAttribute('position', '1 0 0');
@@ -99,7 +90,7 @@ AFRAME.registerComponent('top', {
         topRight.setAttribute('position', '0 0 0');
         topRight.setAttribute('rotation', '0 0 0');
         topRight.setAttribute('scale', '1.5 1 1.5');
-        topRight.setAttribute('color', this.data.color2);
+        topRight.setAttribute('color', this.data.color3);
         topRight.setAttribute('visible', 'true');
         topRight.setAttribute('csg-meshs', 'subtract: #sphere1, #sphere7; intersect: #sphere4');
         this.el.appendChild(topRight);
@@ -109,7 +100,7 @@ AFRAME.registerComponent('top', {
         topLeft.setAttribute('position', '0 0 0');
         topLeft.setAttribute('rotation', '0 0 0');
         topLeft.setAttribute('scale', '1.5 1 1.5');
-        topLeft.setAttribute('color', this.data.color2);
+        topLeft.setAttribute('color', this.data.color3);
         topLeft.setAttribute('visible', 'true');
         topLeft.setAttribute('csg-meshs', 'subtract: #sphere1, #sphere3; intersect: #sphere5');
         this.el.appendChild(topLeft);
@@ -156,37 +147,6 @@ AFRAME.registerComponent('top', {
         this.el.appendChild(mainBody); 
         this.el.appendChild(this.strips);
         this.el.appendChild(this.strips2);
-
-        this.mainBody = mainBody;
-        this.sphere1 = sphere1;
-        this.sphere2 = sphere2;
-        this.sphere3 = sphere3;
-        this.sphere4 = sphere4;
-        this.sphere5 = sphere5;
-        this.sphere7 = sphere7;
-        this.leftTop = leftTop;
-        this.topRight = topRight;
-        this.topLeft = topLeft;
-    },
-
-    tick: function() {
-        // Se showOperations for true, significa que não queremos remover agora
-        if (this.data.showOperations) return;
-    
-        // Verifica se a mesh principal já está pronta
-        if (this.mainBody && this.mainBody.getObject3D('mesh')) {
-            // Aguardamos 100 ms antes de remover as esferas auxiliares
-            setTimeout(() => {
-            [this.sphere1, this.sphere2, this.sphere3, this.sphere4, this.sphere5, this.sphere7, this.leftTop]
-                .forEach(el => {
-                if (el && el.parentNode) {
-                    el.remove();
-                }
-                });
-            // Também poderia remover topRight ou topLeft se desejado, dependendo da lógica
-            // Aqui mantemos topRight e topLeft pois parecem ser parte final do resultado.
-            }, 1000);
-        }
     }
 });
 
@@ -333,17 +293,19 @@ AFRAME.registerComponent('door', {
         door.setAttribute('color', this.data.color1);
         door.setAttribute('visible', 'true');
 
-        const cube = document.createElement('a-box');
-        cube.setAttribute('id', 'cube');
-        cube.setAttribute('position', '0 -0.5 0');
-        cube.setAttribute('rotation', '0 0 0');
-        cube.setAttribute('scale', '2.55 1 0.1');
-        cube.setAttribute('material', 'opacity: 0.4; color: blue');
-        cube.setAttribute('visible', this.data.showOperations);
+        const cube2 = document.createElement('a-box');
+        cube2.setAttribute('id', 'cube2');
+        cube2.setAttribute('position', '0 -0.5 0');
+        cube2.setAttribute('rotation', '0 0 0');
+        cube2.setAttribute('scale', '2.55 1 0.1');
+        cube2.setAttribute('material', 'opacity: 0.4; color: blue');
+        cube2.setAttribute('visible', this.data.showOperations);
 
-        this.el.appendChild(cube);
-        door.setAttribute('csg-meshs', 'subtract: #cube');
+        
+        this.el.appendChild(cube2);
+        door.setAttribute('csg-meshs', 'subtract: #cube2');
         this.el.appendChild(door);
+        
 
     }
 });
@@ -367,28 +329,28 @@ AFRAME.registerComponent('ground', {
         ground.setAttribute('color', this.data.color1);
         ground.setAttribute('visible', 'true');
 
-        const cylinder = document.createElement('a-cylinder');
-        cylinder.setAttribute('id', 'cylinder');
-        cylinder.setAttribute('position', '0 0.5 0');
-        cylinder.setAttribute('rotation', '0 0 0');
-        cylinder.setAttribute('scale', '1 1 1');
-        cylinder.setAttribute('material', 'opacity: 0.4; color: blue');
-        cylinder.setAttribute('visible', this.data.showOperations);
+        const cylinder3 = document.createElement('a-cylinder');
+        cylinder3.setAttribute('id', 'cylinder3');
+        cylinder3.setAttribute('position', '0 0.5 0');
+        cylinder3.setAttribute('rotation', '0 0 0');
+        cylinder3.setAttribute('scale', '1 1 1');
+        cylinder3.setAttribute('material', 'opacity: 0.4; color: blue');
+        cylinder3.setAttribute('visible', this.data.showOperations);
 
         if(this.data.stage == 1){
-            this.el.appendChild(cylinder);
-            ground.setAttribute('csg-meshs', 'subtract: #cylinder');
+            this.el.appendChild(cylinder3);
+            ground.setAttribute('csg-meshs', 'subtract: #cylinder3');
             this.el.appendChild(ground)
             return;
         }
 
-        const cylinder2 = document.createElement('a-cylinder');
-        cylinder2.setAttribute('id', 'cylinder2');
-        cylinder2.setAttribute('position', '0 -0.05 0');
-        cylinder2.setAttribute('rotation', '0 0 0');
-        cylinder2.setAttribute('scale', '1.1 0.1 1.1');
-        cylinder2.setAttribute('material', 'opacity: 0.4; color: yellow');
-        cylinder2.setAttribute('visible', this.data.showOperations);
+        const cylinder4 = document.createElement('a-cylinder');
+        cylinder4.setAttribute('id', 'cylinder4');
+        cylinder4.setAttribute('position', '0 -0.05 0');
+        cylinder4.setAttribute('rotation', '0 0 0');
+        cylinder4.setAttribute('scale', '1.1 0.1 1.1');
+        cylinder4.setAttribute('material', 'opacity: 0.4; color: yellow');
+        cylinder4.setAttribute('visible', this.data.showOperations);
 
         const grass = document.createElement('a-sphere');
         grass.setAttribute('id', 'grass');
@@ -398,11 +360,11 @@ AFRAME.registerComponent('ground', {
         grass.setAttribute('color', this.data.color2);
         grass.setAttribute('visible', 'true');
 
-        cylinder.setAttribute('visible', false);
-        ground.setAttribute('csg-meshs', 'subtract: #cylinder, #cylinder2');
-        grass.setAttribute('csg-meshs', 'intersect: #cylinder2');
-        this.el.appendChild(cylinder);
-        this.el.appendChild(cylinder2);
+        cylinder3.setAttribute('visible', false);
+        ground.setAttribute('csg-meshs', 'subtract: #cylinder3, #cylinder4');
+        grass.setAttribute('csg-meshs', 'intersect: #cylinder4');
+        this.el.appendChild(cylinder3);
+        this.el.appendChild(cylinder4);
         this.el.appendChild(grass);
         this.el.appendChild(ground);
         
@@ -537,5 +499,79 @@ AFRAME.registerComponent('strips', {
         this.el.appendChild(strip9);
         this.el.appendChild(strip11);
 
+    }
+});
+
+AFRAME.registerComponent('freeze-csg-result', {
+    schema: {
+        source: { type: 'selector' },
+        color: { type: 'color', default: null }, // Se não for definido, mantem a cor original
+        delay: { type: 'number', default: 500 }, // Atraso em ms
+        opacity: { type: 'number', default: 1 }  // Se não definido, opacidade = 1 (opaco)
+    },
+    init: function() {
+        this.copied = false;
+        this.copyScheduled = false;
+    },
+    tick: function() {
+        if (this.copied || this.copyScheduled) return;
+
+        const sourceEl = this.data.source;
+        if (!sourceEl) {
+            console.warn("freeze-csg-result: Nenhuma fonte definida ou não encontrada.");
+            return;
+        }
+
+        const sourceCSGEntity = sourceEl.hasAttribute('csg-meshs') 
+            ? sourceEl 
+            : sourceEl.querySelector('[csg-meshs]');
+
+        if (!sourceCSGEntity) {
+            console.warn("freeze-csg-result: Não encontrou entidade com csg-meshs na fonte.");
+            return;
+        }
+
+        const mesh = sourceCSGEntity.getObject3D('mesh');
+        if (!mesh) {
+            return; // Ainda não está pronto
+        }
+
+        this.copyScheduled = true;
+        setTimeout(() => {
+            const clonedMesh = mesh.clone(true);
+
+        // Função auxiliar para clonar material e aplicar cor/opacidade se necessário
+        const applyMaterialProperties = (originalMat) => {
+            const newMat = originalMat.clone();
+
+            // Aplica cor se fornecida
+            if (this.data.color !== null) {
+                newMat.color.set(this.data.color);
+            }
+
+            // Aplica opacidade se diferente de 1
+            if (this.data.opacity !== 1) {
+                newMat.opacity = this.data.opacity;
+                newMat.transparent = this.data.opacity < 1;
+            }
+
+            return newMat;
+        };
+
+        if (Array.isArray(clonedMesh.material)) {
+            clonedMesh.material = clonedMesh.material.map(m => applyMaterialProperties(m));
+        } else {
+            clonedMesh.material = applyMaterialProperties(clonedMesh.material);
+        }
+
+        this.el.setObject3D('mesh', clonedMesh);
+
+        console.log(`freeze-csg-result: Mesh clonada após ${this.data.delay}ms.` +
+            (this.data.color !== null ? ` Cor alterada para ${this.data.color}.` : ' Cor mantida.') +
+            (this.data.opacity !== 1 ? ` Opacidade: ${this.data.opacity}.` : ' Opacidade mantida (1).')
+        );
+
+        this.copied = true;
+        }, this.data.delay);
     }
 });
