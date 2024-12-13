@@ -15,12 +15,14 @@
                     movementSpeed: {type: 'number', default: 25},
                     playerSize: {type: 'number', default: 1.6},
                     pointerLocker: {type: 'boolean', default: false},
-                    canFly: {type: 'boolean', default: false}
+                    canFly: {type: 'boolean', default: false},
+                    fov: {type: 'number', default: 60}
                 },
                 init: function(){
                     // Camera settings
                     var playerVision = document.createElement('a-camera');
                     playerVision.setAttribute('position',  '0 ' + this.data.playerSize + ' 0');
+                    playerVision.setAttribute('fov', fov);
                     // For more about the 'wasd-controls': https://github.com/aframevr/aframe/blob/master/docs/components/wasd-controls.md
                     playerVision.setAttribute('wasd-controls','acceleration: ' + this.data.movementSpeed + '; fly: ' + this.data.canFly + ';'); 
                     // For more about the 'look-controls': https://github.com/aframevr/aframe/blob/master/docs/components/look-controls.md
